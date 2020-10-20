@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ApiMon.Data
 {
-    public class Monster
+    public class Move
     {
         [Key]
         public int Id { get; set; }
@@ -16,17 +16,9 @@ namespace ApiMon.Data
         public string Name { get; set; }
         [Required]
         public string Description { get; set; }
+        public virtual ICollection<Monster> Monsters { get; set; }
         [ForeignKey(nameof(ElementType))]
         public int ElementTypeId { get; set; }
         public virtual ElementType ElementType { get; set; }
-        [ForeignKey(nameof(Move))]
-        public int MoveOne { get; set; }
-        [ForeignKey(nameof(Move))]
-        public int MoveTwo { get; set; }
-        [ForeignKey(nameof(Move))]
-        public int MoveThree { get; set; }
-        [ForeignKey(nameof(Move))]
-        public int MoveFour { get; set; }
-        public virtual Move Move { get; set; }
     }
 }
