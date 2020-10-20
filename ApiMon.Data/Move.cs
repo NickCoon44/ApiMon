@@ -16,7 +16,7 @@ namespace ApiMon.Data
         public string Name { get; set; }
         [Required]
         public string Description { get; set; }
-        public virtual ICollection<Monster> Monsters { get; set; }
+
         [ForeignKey(nameof(ElementType))]
         public int ElementTypeId { get; set; }
         public virtual ElementType ElementType { get; set; }
