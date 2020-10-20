@@ -18,7 +18,8 @@ namespace ApiMon.WebAPI.Controllers
         }
 
         //Post Element Type
-        public IHttpActionResult Post(ElementTypeCreate model)
+        [HttpPost]
+        public IHttpActionResult CreateElement(ElementTypeCreate model)
         {
             if (!ModelState.IsValid)
             {
@@ -40,7 +41,37 @@ namespace ApiMon.WebAPI.Controllers
             return Ok(Elements);
         }
 
+        //Get By Id
+        public IHttpActionResult Get(int id)
+        {
+            var service = CreateElementTypeService();
+            var Element = service.GetElementTypeById(id);
+            return Ok(Element);
+        }
 
+        //Update Element By Id
+        [HttpPut]
+        public IHttpActionResult UpdateElementById([FromUri] int id, ElementTypeUpdate model)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var service = CreateElementTypeService();
+
+            if (service.UpdateElementType(id, model))
+                return Ok("Element Updated");
+            return InternalServerError();
+        }
+
+        [HttpDelete]
+        public IHttpActionResult DeleteElement(int id)
+        {
+            var service = CreateElementTypeService();
+
+            if (service.DeleteElementType(id))
+                return Ok();
+            return InternalServerError();
+        }
 
     }
 }
