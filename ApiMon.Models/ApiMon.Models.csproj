@@ -55,6 +55,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ElementTypeModels\ElementTypeCreate.cs" />
+    <Compile Include="ElementTypeModels\ElementTypeDetail.cs" />
+    <Compile Include="ElementTypeModels\ElementTypeListItem.cs" />
+    <Compile Include="ElementTypeModels\ElementTypeUpdate.cs" />
     <Compile Include="MonsterModels\MonsterCreate.cs" />
     <Compile Include="MoveModels\MoveCreate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
