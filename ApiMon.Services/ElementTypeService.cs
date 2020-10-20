@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ApiMon.Services
 {
-    class ElementTypeService
+    public class ElementTypeService
     {
         private ApplicationDbContext _context = new ApplicationDbContext();
 
@@ -64,7 +64,23 @@ namespace ApiMon.Services
             if (entity is null)
                 return false;
 
-            return true;
+            //Using null coalescing operators to check for user inputs
+            entity.Name = model.Name ?? entity.Name;
+            entity.Advantages = model.Advantages ?? entity.Advantages;
+            entity.Disadvantages = model.Disadvantages ?? entity.Disadvantages;
+
+            return _context.SaveChanges() == 1;
+        }
+
+        public bool DeleteElementType(int id)
+        {
+            var entity = _context.ElementTypes.Single(e => e.Id == id);
+
+            if (entity is null)
+                return false;
+
+            _context.ElementTypes.Remove(entity);
+            return _context.SaveChanges() == 1;
         }
     }
 }
