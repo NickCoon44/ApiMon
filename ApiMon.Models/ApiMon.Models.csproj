@@ -54,7 +54,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MonsterCreate.cs" />
+    <Compile Include="ElementTypeModels\ElementTypeCreate.cs" />
+    <Compile Include="MonsterModels\MonsterCreate.cs" />
+    <Compile Include="MoveModels\MoveCreate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

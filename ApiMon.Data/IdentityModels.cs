@@ -33,7 +33,11 @@ namespace ApiMon.Data
             return new ApplicationDbContext();
         }
 
+        // Database sets
         public DbSet<Monster> Monsters { get; set; }
+        public DbSet<Move> Moves { get; set; }
+        public DbSet<ElementType> ElementTypes { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder

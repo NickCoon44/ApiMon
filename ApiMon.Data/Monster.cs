@@ -16,17 +16,30 @@ namespace ApiMon.Data
         public string Name { get; set; }
         [Required]
         public string Description { get; set; }
+
+        // Element Type
         [ForeignKey(nameof(ElementType))]
         public int ElementTypeId { get; set; }
         public virtual ElementType ElementType { get; set; }
-        [ForeignKey(nameof(Move))]
-        public int MoveOne { get; set; }
-        [ForeignKey(nameof(Move))]
-        public int MoveTwo { get; set; }
-        [ForeignKey(nameof(Move))]
-        public int MoveThree { get; set; }
-        [ForeignKey(nameof(Move))]
-        public int MoveFour { get; set; }
-        public virtual Move Move { get; set; }
+
+        // Move Slot 1
+        [ForeignKey(nameof(MoveOne))]
+        public int MoveOneId { get; set; }
+        public virtual Move MoveOne { get; set; }
+
+        // Move Slot 2
+        [ForeignKey(nameof(MoveTwo))]
+        public int MoveTwoId { get; set; }
+        public virtual Move MoveTwo { get; set; }
+
+        // Move Slot 3
+        [ForeignKey(nameof(MoveThree))]
+        public int MoveThreeId { get; set; }
+        public virtual Move MoveThree { get; set; }
+
+        // Move Slot 4
+        [ForeignKey(nameof(MoveFour))]
+        public int MoveFourId { get; set; }
+        public virtual Move MoveFour { get; set; }
     }
 }
