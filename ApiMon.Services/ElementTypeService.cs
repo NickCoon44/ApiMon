@@ -52,7 +52,25 @@ namespace ApiMon.Services
                 Disadvantages = entity.Disadvantages
             };
 
-            // TODO Add in Monsters and Moves Later
+            foreach(var monster in entity.Monsters)
+            {
+                model.Monsters.Add(new Models.MonsterModels.MonsterListItem
+                {
+                    ElementType = monster.ElementType.Name,
+                    Id = monster.Id,
+                    Name = monster.Name
+                });
+            }
+
+            foreach(var move in entity.Moves)
+            {
+                model.Moves.Add(new Models.MoveModels.MoveListItem
+                {
+                    Id = move.Id,
+                    ElementType = move.ElementType.Name,
+                    Name = move.Name
+                });
+            }
 
             return model;
         }
