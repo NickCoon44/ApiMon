@@ -37,16 +37,18 @@ namespace ApiMon.WebAPI.Controllers
         public IHttpActionResult Get()
         {
             var service = CreateElementTypeService();
-            var Elements = service.GetElementTypes();
-            return Ok(Elements);
+            var elements = service.GetElementTypes();
+            return Ok(elements);
         }
 
         //Get By Id
         public IHttpActionResult Get(int id)
         {
             var service = CreateElementTypeService();
-            var Element = service.GetElementTypeById(id);
-            return Ok(Element);
+            var element = service.GetElementTypeById(id);
+            if (element is null)
+                return NotFound();
+            return Ok(element);
         }
 
         //Update Element By Id

@@ -43,7 +43,9 @@ namespace ApiMon.Services
 
         public MonsterDetail GetMonsterById(int id)
         {
-            var entity = _context.Monsters.Single(e => e.Id == id);
+            var entity = _context.Monsters.Find(id);
+            if (entity is null)
+                return null;
             var model = new MonsterDetail()
             {
                 Id = entity.Id,

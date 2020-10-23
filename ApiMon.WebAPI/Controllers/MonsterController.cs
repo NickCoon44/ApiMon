@@ -32,6 +32,8 @@ namespace ApiMon.WebAPI.Controllers
             var service = CreateMonsterService();
 
             var move = service.GetMonsterById(id);
+            if (move is null)
+                return NotFound();
             return Ok(move);
         }
 
