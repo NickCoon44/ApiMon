@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ApiMon.Models.MonsterModels;
+using ApiMon.Models.MoveModels;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -19,7 +21,7 @@ namespace ApiMon.Models.ElementTypeModels
 
         public string Disadvantages { get; set; }
 
-        //public List<MonsterListItem> { get; set; }
-        //public List<MoveListItem> MyProperty { get; set; }
-    }
+        public List<MonsterListItem> Monsters { get; set; } = new List<MonsterListItem>();
+        public List<MoveListItem> Moves { get; set; } = new List<MoveListItem>();
+}
 }
