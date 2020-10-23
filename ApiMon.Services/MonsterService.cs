@@ -15,19 +15,34 @@ namespace ApiMon.Services
         private ApplicationDbContext _context = new ApplicationDbContext();
         public bool CreateMonster(MonsterCreate model)
         {
-            var entity = new Monster()
+            if (CheckMove(model.MoveOneId, model.MoveTwoId, model.MoveThreeId, model.MoveFourId))
             {
-                Name = model.Name,
-                Description = model.Description,
-                ElementTypeId = model.ElementTypeId,
-                MoveOneId = model.MoveOneId,
-                MoveTwoId = model.MoveTwoId,
-                MoveThreeId = model.MoveThreeId,
-                MoveFourId = model.MoveFourId
-            };
+                var entity = new Monster()
+                {
+                    Name = model.Name,
+                    Description = model.Description,
+                    ElementTypeId = model.ElementTypeId,
+                    MoveOneId = model.MoveOneId,
+                    MoveTwoId = model.MoveTwoId,
+                    MoveThreeId = model.MoveThreeId,
+                    MoveFourId = model.MoveFourId
+                };
 
-            _context.Monsters.Add(entity);
-            return _context.SaveChanges() == 1;
+                _context.Monsters.Add(entity);
+                return _context.SaveChanges() == 1;
+            }
+
+            return false;
+        }
+
+        private bool CheckMove(int a, int b, int c, int d)
+        {
+
+            if (a == b || a == c || a == d || b == c || b == d || c == d)
+            {
+                return false;
+            }
+            return true;
         }
 
         public IEnumerable<MonsterListItem> GetAllMonsters()
@@ -83,17 +98,36 @@ namespace ApiMon.Services
         {
             var entity = _context.Monsters.Single(e => e.Id == id);
 
-            if (entity != null)
+            if (CheckMove(model.MoveOneId, model.MoveTwoId, model.MoveThreeId, model.MoveFourId))
             {
-                entity.Name = model.Name;
-                entity.Description = model.Description;
-                entity.ElementTypeId = model.ElementTypeId;
-                entity.MoveOneId = model.MoveOneId;
-                entity.MoveTwoId = model.MoveTwoId;
-                entity.MoveThreeId = model.MoveThreeId;
-                entity.MoveFourId = model.MoveFourId;
+                if (entity != null)
+                {
+                    entity.Name = model.Name;
+                    entity.Description = model.Description;
+                    entity.ElementTypeId = model.ElementTypeId;
+                    if (entity.MoveTwoId != model.MoveOneId && entity.MoveThreeId != model.MoveOneId && entity.MoveFourId != model.MoveOneId)
+                    {
+                        entity.MoveOneId = model.MoveOneId;
+                    }
 
-                return _context.SaveChanges() == 1;
+                    if (entity.MoveOneId != model.MoveTwoId && entity.MoveThreeId != model.MoveTwoId && entity.MoveFourId != model.MoveTwoId)
+                    {
+                        entity.MoveTwoId = model.MoveTwoId;
+                    }
+
+                    if (entity.MoveOneId != model.MoveThreeId && entity.MoveTwoId != model.MoveThreeId && entity.MoveFourId != model.MoveThreeId)
+                    {
+                        entity.MoveThreeId = model.MoveThreeId;
+                    }
+
+                    if (entity.MoveOneId != model.MoveFourId && entity.MoveTwoId != model.MoveFourId && entity.MoveThreeId != model.MoveFourId)
+                    {
+                        entity.MoveFourId = model.MoveFourId;
+                    }
+
+                    return _context.SaveChanges() == 1;
+                }
+
             }
             return false;
 
