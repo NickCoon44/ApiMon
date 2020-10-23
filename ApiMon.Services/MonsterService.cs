@@ -54,27 +54,27 @@ namespace ApiMon.Services
                 ElementType = entity.ElementType.Name,
                 MoveOne = new MoveListItem()
                 {
-                    Id = entity.MoveOne != null ? entity.MoveOneId : null,
-                    Name = entity.MoveOne != null ? entity.MoveOne.Name : "None",
-                    ElementType = entity.MoveOne != null ? entity.MoveOne.ElementType.Name : null
+                    Id = entity.MoveOneId != null ? entity.MoveOneId : null,
+                    Name = entity.MoveOne != null ? entity.MoveOne.Name : "none",
+                    ElementType = entity.MoveOne != null ? entity.MoveOne.Name : "none"
                 },
                 MoveTwo = new MoveListItem()
                 {
-                    Id = entity.MoveTwo != null ? entity.MoveTwoId : null,
-                    Name = entity.MoveTwo != null ? entity.MoveTwo.Name : "None",
-                    ElementType = entity.MoveTwo != null ? entity.MoveTwo.ElementType.Name : null
+                    Id = entity.MoveTwoId != null ? entity.MoveTwoId : null,
+                    Name = entity.MoveTwo != null ? entity.MoveTwo.Name : "none",
+                    ElementType = entity.MoveTwo != null ? entity.MoveTwo.Name : "none"
                 },
                 MoveThree = new MoveListItem()
                 {
-                    Id = entity.MoveThree != null ? entity.MoveThreeId : null,
-                    Name = entity.MoveThree != null ? entity.MoveThree.Name : "None",
-                    ElementType = entity.MoveThree != null ? entity.MoveThree.ElementType.Name : null
+                    Id = entity.MoveThreeId != null ? entity.MoveThreeId : null,
+                    Name = entity.MoveThree != null ? entity.MoveThree.Name : "none",
+                    ElementType = entity.MoveThree != null ? entity.MoveThree.Name : "none"
                 },
                 MoveFour = new MoveListItem()
                 {
-                    Id = entity.MoveFour != null ? entity.MoveFourId : null,
-                    Name = entity.MoveFour != null ? entity.MoveFour.Name : "None",
-                    ElementType = entity.MoveFour != null ? entity.MoveFour.ElementType.Name : null
+                    Id = entity.MoveFourId != null ? entity.MoveFourId : null,
+                    Name = entity.MoveFour != null ? entity.MoveFour.Name : "none",
+                    ElementType = entity.MoveFour != null ? entity.MoveFour.Name : "none"
                 },
             };
 
