@@ -43,7 +43,9 @@ namespace ApiMon.Services
 
         public MonsterDetail GetMonsterById(int id)
         {
-            var entity = _context.Monsters.Single(e => e.Id == id);
+            var entity = _context.Monsters.Find(id);
+            if (entity is null)
+                return null;
             var model = new MonsterDetail()
             {
                 Id = entity.Id,
@@ -52,27 +54,27 @@ namespace ApiMon.Services
                 ElementType = entity.ElementType.Name,
                 MoveOne = new MoveListItem()
                 {
-                    Id = entity.MoveOneId,
-                    Name = entity.MoveOne.Name,
-                    ElementType = entity.MoveOne.ElementType.Name
+                    Id = entity.MoveOne != null ? entity.MoveOneId : null,
+                    Name = entity.MoveOne != null ? entity.MoveOne.Name : "None",
+                    ElementType = entity.MoveOne != null ? entity.MoveOne.ElementType.Name : null
                 },
                 MoveTwo = new MoveListItem()
                 {
-                    Id = entity.MoveTwoId,
-                    Name = entity.MoveTwo.Name,
-                    ElementType = entity.MoveTwo.ElementType.Name
+                    Id = entity.MoveTwo != null ? entity.MoveTwoId : null,
+                    Name = entity.MoveTwo != null ? entity.MoveTwo.Name : "None",
+                    ElementType = entity.MoveTwo != null ? entity.MoveTwo.ElementType.Name : null
                 },
                 MoveThree = new MoveListItem()
                 {
-                    Id = entity.MoveThreeId,
-                    Name = entity.MoveThree.Name,
-                    ElementType = entity.MoveThree.ElementType.Name
+                    Id = entity.MoveThree != null ? entity.MoveThreeId : null,
+                    Name = entity.MoveThree != null ? entity.MoveThree.Name : "None",
+                    ElementType = entity.MoveThree != null ? entity.MoveThree.ElementType.Name : null
                 },
                 MoveFour = new MoveListItem()
                 {
-                    Id = entity.MoveFourId,
-                    Name = entity.MoveFour.Name,
-                    ElementType = entity.MoveFour.ElementType.Name
+                    Id = entity.MoveFour != null ? entity.MoveFourId : null,
+                    Name = entity.MoveFour != null ? entity.MoveFour.Name : "None",
+                    ElementType = entity.MoveFour != null ? entity.MoveFour.ElementType.Name : null
                 },
             };
 
