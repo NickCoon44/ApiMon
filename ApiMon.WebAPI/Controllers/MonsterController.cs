@@ -45,8 +45,15 @@ namespace ApiMon.WebAPI.Controllers
 
             var service = CreateMonsterService();
 
-            if (!service.CreateMonster(monster))
+            if (service.CreateMonster(monster) != 1)
+            {
+                if (service.CreateMonster(monster) == 0)
+                {
+                    return BadRequest("Duplicate Moves");
+                }
                 return InternalServerError();
+            }
+
 
             return Ok(monster.Name + " added");
         }
@@ -59,8 +66,14 @@ namespace ApiMon.WebAPI.Controllers
 
             var service = CreateMonsterService();
 
-            if (!service.UpdateMonster(id, monster))
+            if (service.UpdateMonster(id, monster) != 1)
+            {
+                if(service.UpdateMonster(id, monster) == 0)
+                {
+                    return BadRequest("Duplicate Moves");
+                }
                 return InternalServerError();
+            }
 
             return Ok($"Monster {id} updated");
         }
