@@ -17,14 +17,25 @@ namespace ApiMon.WebAPI.Controllers
             return moveService;
         }
 
-        public IHttpActionResult Get()
+        [HttpGet]
+        public IHttpActionResult GetMoves()
         {
-            var moveService = CreateMoveService();
-            var moves = moveService.GetMoves();
+            var service = CreateMoveService();
+            var moves = service.GetMoves();
             return Ok(moves);
         }
 
-        public IHttpActionResult Post(MoveCreate move)
+        [HttpGet]
+        public IHttpActionResult GetMoveById(int id)
+        {
+            var service = CreateMoveService();
+
+            var move = service.GetMoveById(id);
+            return Ok(move);
+        }
+
+        [HttpPost]
+        public IHttpActionResult CreateMove(MoveCreate move)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -35,6 +46,32 @@ namespace ApiMon.WebAPI.Controllers
                 return InternalServerError();
 
             return Ok(move.Name + " added");
+        }
+
+        [HttpPut]
+        public IHttpActionResult UpdateMove([FromUri]int id, MoveEdit move)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var service = CreateMoveService();
+
+            if (!service.UpdateMove(id, move))
+                return InternalServerError();
+
+            return Ok($"Move {id} updated");
+        }
+
+        [HttpDelete]
+        public IHttpActionResult DeleteMove(int id)
+        {
+
+            var service = CreateMoveService();
+
+            if (!service.DeleteMove(id))
+                return InternalServerError();
+
+            return Ok($"Move {id} Deleted");
         }
     }
 }
