@@ -84,8 +84,34 @@ namespace ApiMon.Services
                 var entity = ctx.Moves.Single(e => e.Id == id);
                 if (entity != null)
                 {
+                    int count = 1;
+                    var monstersOne = ctx.Monsters.Where(m => m.MoveOneId == id);
+                    foreach (var monster in monstersOne)
+                    {
+                        monster.MoveOneId = null;
+                        count++;
+                    }
+                    var monstersTwo = ctx.Monsters.Where(m => m.MoveTwoId == id);
+                    foreach (var monster in monstersTwo)
+                    {
+                        monster.MoveTwoId = null;
+                        count++;
+                    }
+                    var monstersThree = ctx.Monsters.Where(m => m.MoveThreeId == id);
+                    foreach (var monster in monstersThree)
+                    {
+                        monster.MoveThreeId = null;
+                        count++;
+                    }
+                    var monstersFour = ctx.Monsters.Where(m => m.MoveFourId == id);
+                    foreach (var monster in monstersFour)
+                    {
+                        monster.MoveFourId = null;
+                        count++;
+                    }
+
                     ctx.Moves.Remove(entity);
-                    return ctx.SaveChanges() == 1;
+                    return ctx.SaveChanges() == count;
                 }
                 return false;
             }

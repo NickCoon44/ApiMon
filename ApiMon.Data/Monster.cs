@@ -25,22 +25,22 @@ namespace ApiMon.Data
 
         // Move Slot 1
         [ForeignKey(nameof(MoveOne))]
-        public int MoveOneId { get; set; }
+        public int? MoveOneId { get; set; }
         public virtual Move MoveOne { get; set; }
 
         // Move Slot 2
         [ForeignKey(nameof(MoveTwo))]
-        public int MoveTwoId { get; set; }
+        public int? MoveTwoId { get; set; }
         public virtual Move MoveTwo { get; set; }
 
         // Move Slot 3
         [ForeignKey(nameof(MoveThree))]
-        public int MoveThreeId { get; set; }
+        public int? MoveThreeId { get; set; }
         public virtual Move MoveThree { get; set; }
 
         // Move Slot 4
         [ForeignKey(nameof(MoveFour))]
-        public int MoveFourId { get; set; }
+        public int? MoveFourId { get; set; }
         public virtual Move MoveFour { get; set; }
     }
 }
