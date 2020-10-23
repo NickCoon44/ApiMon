@@ -13,7 +13,7 @@ namespace ApiMon.Services
     public class MonsterService
     {
         private ApplicationDbContext _context = new ApplicationDbContext();
-        public bool CreateMonster(MonsterCreate model)
+        public int CreateMonster(MonsterCreate model)
         {
             if (CheckMove(model.MoveOneId, model.MoveTwoId, model.MoveThreeId, model.MoveFourId))
             {
@@ -29,10 +29,9 @@ namespace ApiMon.Services
                 };
 
                 _context.Monsters.Add(entity);
-                return _context.SaveChanges() == 1;
+                return _context.SaveChanges(); // Should be 1
             }
-
-            return false;
+            return 0;
         }
 
         private bool CheckMove(int a, int b, int c, int d)
@@ -71,32 +70,32 @@ namespace ApiMon.Services
                 {
                     Id = entity.MoveOneId != null ? entity.MoveOneId : null,
                     Name = entity.MoveOne != null ? entity.MoveOne.Name : "none",
-                    ElementType = entity.MoveOne != null ? entity.MoveOne.Name : "none"
+                    ElementType = entity.MoveOne != null ? entity.MoveOne.ElementType.Name : "none"
                 },
                 MoveTwo = new MoveListItem()
                 {
                     Id = entity.MoveTwoId != null ? entity.MoveTwoId : null,
                     Name = entity.MoveTwo != null ? entity.MoveTwo.Name : "none",
-                    ElementType = entity.MoveTwo != null ? entity.MoveTwo.Name : "none"
+                    ElementType = entity.MoveTwo != null ? entity.MoveTwo.ElementType.Name : "none"
                 },
                 MoveThree = new MoveListItem()
                 {
                     Id = entity.MoveThreeId != null ? entity.MoveThreeId : null,
                     Name = entity.MoveThree != null ? entity.MoveThree.Name : "none",
-                    ElementType = entity.MoveThree != null ? entity.MoveThree.Name : "none"
+                    ElementType = entity.MoveThree != null ? entity.MoveThree.ElementType.Name : "none"
                 },
                 MoveFour = new MoveListItem()
                 {
                     Id = entity.MoveFourId != null ? entity.MoveFourId : null,
                     Name = entity.MoveFour != null ? entity.MoveFour.Name : "none",
-                    ElementType = entity.MoveFour != null ? entity.MoveFour.Name : "none"
+                    ElementType = entity.MoveFour != null ? entity.MoveFour.ElementType.Name : "none"
                 },
             };
 
             return model;
         }
 
-        public bool UpdateMonster(int id, MonsterEdit model)
+        public int UpdateMonster(int id, MonsterEdit model)
         {
             var entity = _context.Monsters.Single(e => e.Id == id);
 
@@ -127,11 +126,11 @@ namespace ApiMon.Services
                         entity.MoveFourId = model.MoveFourId;
                     }
 
-                    return _context.SaveChanges() == 1;
+                    return _context.SaveChanges(); // Should be 1
                 }
 
             }
-            return false;
+            return 0;
 
         }
 
