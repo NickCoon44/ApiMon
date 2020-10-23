@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace ApiMon.Models.MoveModels
 {
-    public class MoveListItem
+    public class MoveEdit
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public string ElementType { get; set; } //Name of Element Type
     }
 }

@@ -60,6 +60,8 @@
     <Compile Include="ElementTypeModels\ElementTypeUpdate.cs" />
     <Compile Include="MonsterModels\MonsterCreate.cs" />
     <Compile Include="MoveModels\MoveCreate.cs" />
+    <Compile Include="MoveModels\MoveDetail.cs" />
+    <Compile Include="MoveModels\MoveEdit.cs" />
     <Compile Include="MoveModels\MoveListItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
