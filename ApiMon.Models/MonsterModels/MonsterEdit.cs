@@ -1,20 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ApiMon.Models
+namespace ApiMon.Models.MonsterModels
 {
-    
-    public class MonsterCreate
+    public class MonsterEdit
     {
-        [Required]
         public string Name { get; set; }
-        [Required]
         public string Description { get; set; }
-        [Required]
         public int ElementTypeId { get; set; }
         public int MoveOneId { get; set; }
         public int MoveTwoId { get; set; }

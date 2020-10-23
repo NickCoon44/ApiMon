@@ -7,15 +7,19 @@ using System.Threading.Tasks;
 
 namespace ApiMon.Models.ElementTypeModels
 {
-    public class ElementTypeCreate
+    public class ElementTypeDetail
     {
-        [Required]
+        [Display(Name = "Element Id")]
+        public int Id { get; set; }
+
+        [Display(Name = "Element Id")]
         public string Name { get; set; }
 
-        [Required]
         public string Advantages { get; set; }
 
-        [Required]
         public string Disadvantages { get; set; }
+
+        //public List<MonsterListItem> { get; set; }
+        //public List<MoveListItem> MyProperty { get; set; }
     }
 }

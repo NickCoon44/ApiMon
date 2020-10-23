@@ -206,7 +206,10 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ElementTypeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MonsterController.cs" />
+    <Compile Include="Controllers\MoveController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -310,6 +313,14 @@
     <ProjectReference Include="..\ApiMon.Data\ApiMon.Data.csproj">
       <Project>{46487FF8-BCBD-409C-BDBA-5A52B71726CA}</Project>
       <Name>ApiMon.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ApiMon.Models\ApiMon.Models.csproj">
+      <Project>{F2E51B40-E343-4A83-965F-4CD508E7DA1E}</Project>
+      <Name>ApiMon.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ApiMon.Services\ApiMon.Services.csproj">
+      <Project>{173DA288-196A-4D1B-9449-AA6C4E92F5E0}</Project>
+      <Name>ApiMon.Services</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
