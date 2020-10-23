@@ -31,6 +31,8 @@ namespace ApiMon.WebAPI.Controllers
             var service = CreateMoveService();
 
             var move = service.GetMoveById(id);
+            if (move is null)
+                return NotFound();
             return Ok(move);
         }
 
@@ -56,10 +58,13 @@ namespace ApiMon.WebAPI.Controllers
 
             var service = CreateMoveService();
 
-            if (!service.UpdateMove(id, move))
-                return InternalServerError();
-
-            return Ok($"Move {id} updated");
+            switch(service.UpdateMove(id, move))
+            {
+                case 0: return Ok("Move Updated");
+                case 1: return InternalServerError();
+                case 2: return NotFound();
+                default: return InternalServerError();
+            }
         }
 
         [HttpDelete]

@@ -48,7 +48,9 @@ namespace ApiMon.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Moves.Single(e => e.Id == id);
+                var entity = ctx.Moves.Find(id);
+                if (entity is null)
+                    return null;
                 var model = new MoveDetail()
                 {
                     Id = entity.Id,
@@ -62,18 +64,20 @@ namespace ApiMon.Services
 
         }
 
-        public bool UpdateMove(int id, MoveEdit model)
+        public int UpdateMove(int id, MoveEdit model)
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Moves.Single(e => e.Id == id);
-                if (entity != null)
-                {
-                    entity.Name = model.Name;
-                    entity.Description = model.Description;
-                    return ctx.SaveChanges() == 1;
-                }
-                return false;
+                var entity = ctx.Moves.Find(id);
+                if (entity is null)
+                    return 2;
+                
+                entity.Name = model.Name;
+                entity.Description = model.Description;
+                if (ctx.SaveChanges() == 1)
+                    return 0;
+                
+                return 1;
             }
         }
 
@@ -84,8 +88,34 @@ namespace ApiMon.Services
                 var entity = ctx.Moves.Single(e => e.Id == id);
                 if (entity != null)
                 {
+                    int count = 1;
+                    var monstersOne = ctx.Monsters.Where(m => m.MoveOneId == id);
+                    foreach (var monster in monstersOne)
+                    {
+                        monster.MoveOneId = null;
+                        count++;
+                    }
+                    var monstersTwo = ctx.Monsters.Where(m => m.MoveTwoId == id);
+                    foreach (var monster in monstersTwo)
+                    {
+                        monster.MoveTwoId = null;
+                        count++;
+                    }
+                    var monstersThree = ctx.Monsters.Where(m => m.MoveThreeId == id);
+                    foreach (var monster in monstersThree)
+                    {
+                        monster.MoveThreeId = null;
+                        count++;
+                    }
+                    var monstersFour = ctx.Monsters.Where(m => m.MoveFourId == id);
+                    foreach (var monster in monstersFour)
+                    {
+                        monster.MoveFourId = null;
+                        count++;
+                    }
+
                     ctx.Moves.Remove(entity);
-                    return ctx.SaveChanges() == 1;
+                    return ctx.SaveChanges() == count;
                 }
                 return false;
             }

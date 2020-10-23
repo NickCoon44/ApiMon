@@ -13,21 +13,35 @@ namespace ApiMon.Services
     public class MonsterService
     {
         private ApplicationDbContext _context = new ApplicationDbContext();
-        public bool CreateMonster(MonsterCreate model)
+        public int CreateMonster(MonsterCreate model)
         {
-            var entity = new Monster()
+            if (CheckMove(model.MoveOneId, model.MoveTwoId, model.MoveThreeId, model.MoveFourId))
             {
-                Name = model.Name,
-                Description = model.Description,
-                ElementTypeId = model.ElementTypeId,
-                MoveOneId = model.MoveOneId,
-                MoveTwoId = model.MoveTwoId,
-                MoveThreeId = model.MoveThreeId,
-                MoveFourId = model.MoveFourId
-            };
+                var entity = new Monster()
+                {
+                    Name = model.Name,
+                    Description = model.Description,
+                    ElementTypeId = model.ElementTypeId,
+                    MoveOneId = model.MoveOneId,
+                    MoveTwoId = model.MoveTwoId,
+                    MoveThreeId = model.MoveThreeId,
+                    MoveFourId = model.MoveFourId
+                };
 
-            _context.Monsters.Add(entity);
-            return _context.SaveChanges() == 1;
+                _context.Monsters.Add(entity);
+                return _context.SaveChanges(); // Should be 1
+            }
+            return 0;
+        }
+
+        private bool CheckMove(int a, int b, int c, int d)
+        {
+
+            if (a == b || a == c || a == d || b == c || b == d || c == d)
+            {
+                return false;
+            }
+            return true;
         }
 
         public IEnumerable<MonsterListItem> GetAllMonsters()
@@ -43,7 +57,9 @@ namespace ApiMon.Services
 
         public MonsterDetail GetMonsterById(int id)
         {
-            var entity = _context.Monsters.Single(e => e.Id == id);
+            var entity = _context.Monsters.Find(id);
+            if (entity is null)
+                return null;
             var model = new MonsterDetail()
             {
                 Id = entity.Id,
@@ -52,50 +68,69 @@ namespace ApiMon.Services
                 ElementType = entity.ElementType.Name,
                 MoveOne = new MoveListItem()
                 {
-                    Id = entity.MoveOneId,
-                    Name = entity.MoveOne.Name,
-                    ElementType = entity.MoveOne.ElementType.Name
+                    Id = entity.MoveOneId != null ? entity.MoveOneId : null,
+                    Name = entity.MoveOne != null ? entity.MoveOne.Name : "none",
+                    ElementType = entity.MoveOne != null ? entity.MoveOne.ElementType.Name : "none"
                 },
                 MoveTwo = new MoveListItem()
                 {
-                    Id = entity.MoveTwoId,
-                    Name = entity.MoveTwo.Name,
-                    ElementType = entity.MoveTwo.ElementType.Name
+                    Id = entity.MoveTwoId != null ? entity.MoveTwoId : null,
+                    Name = entity.MoveTwo != null ? entity.MoveTwo.Name : "none",
+                    ElementType = entity.MoveTwo != null ? entity.MoveTwo.ElementType.Name : "none"
                 },
                 MoveThree = new MoveListItem()
                 {
-                    Id = entity.MoveThreeId,
-                    Name = entity.MoveThree.Name,
-                    ElementType = entity.MoveThree.ElementType.Name
+                    Id = entity.MoveThreeId != null ? entity.MoveThreeId : null,
+                    Name = entity.MoveThree != null ? entity.MoveThree.Name : "none",
+                    ElementType = entity.MoveThree != null ? entity.MoveThree.ElementType.Name : "none"
                 },
                 MoveFour = new MoveListItem()
                 {
-                    Id = entity.MoveFourId,
-                    Name = entity.MoveFour.Name,
-                    ElementType = entity.MoveFour.ElementType.Name
+                    Id = entity.MoveFourId != null ? entity.MoveFourId : null,
+                    Name = entity.MoveFour != null ? entity.MoveFour.Name : "none",
+                    ElementType = entity.MoveFour != null ? entity.MoveFour.ElementType.Name : "none"
                 },
             };
 
             return model;
         }
 
-        public bool UpdateMonster(int id, MonsterEdit model)
+        public int UpdateMonster(int id, MonsterEdit model)
         {
-            var entity = _context.Monsters.Single(e => e.Id == id);
+            var entity = _context.Monsters.Find(id);
 
-            if (entity != null)
+            if (CheckMove(model.MoveOneId, model.MoveTwoId, model.MoveThreeId, model.MoveFourId))
             {
-                entity.Name = model.Name;
-                entity.Description = model.Description;
-                entity.ElementTypeId = model.ElementTypeId;
-                entity.MoveOneId = model.MoveOneId;
-                entity.MoveTwoId = model.MoveTwoId;
-                entity.MoveThreeId = model.MoveThreeId;
-                entity.MoveFourId = model.MoveFourId;
+                if (entity != null)
+                {
+                    entity.Name = model.Name;
+                    entity.Description = model.Description;
+                    entity.ElementTypeId = model.ElementTypeId;
+                    if (entity.MoveTwoId != model.MoveOneId && entity.MoveThreeId != model.MoveOneId && entity.MoveFourId != model.MoveOneId)
+                    {
+                        entity.MoveOneId = model.MoveOneId;
+                    }
 
-                return _context.SaveChanges() == 1;
+                    if (entity.MoveOneId != model.MoveTwoId && entity.MoveThreeId != model.MoveTwoId && entity.MoveFourId != model.MoveTwoId)
+                    {
+                        entity.MoveTwoId = model.MoveTwoId;
+                    }
+
+                    if (entity.MoveOneId != model.MoveThreeId && entity.MoveTwoId != model.MoveThreeId && entity.MoveFourId != model.MoveThreeId)
+                    {
+                        entity.MoveThreeId = model.MoveThreeId;
+                    }
+
+                    if (entity.MoveOneId != model.MoveFourId && entity.MoveTwoId != model.MoveFourId && entity.MoveThreeId != model.MoveFourId)
+                    {
+                        entity.MoveFourId = model.MoveFourId;
+                    }
+
+                    return _context.SaveChanges(); // Should be 1
+                }
+
             }
-            return false;
+            return 0;
 
         }
 

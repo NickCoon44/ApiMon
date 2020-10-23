@@ -42,7 +42,9 @@ namespace ApiMon.Services
         //Get by ID
         public ElementTypeDetail GetElementTypeById(int id)
         {
-            var entity = _context.ElementTypes.Single(e => e.Id == id);
+            var entity = _context.ElementTypes.Find(id);
+            if (entity is null)
+                return null;
 
             var model = new ElementTypeDetail()
             {
@@ -75,19 +77,22 @@ namespace ApiMon.Services
             return model;
         }
 
-        public bool UpdateElementType(int id, ElementTypeUpdate model)
+        public int UpdateElementType(int id, ElementTypeUpdate model)
         {
-            var entity = _context.ElementTypes.Single(e => e.Id == id);
+            var entity = _context.ElementTypes.Find(id);
             //If no Id found return false
             if (entity is null)
-                return false;
+                return 2;
 
             //Using null coalescing operators to check for user inputs
             entity.Name = model.Name ?? entity.Name;
             entity.Advantages = model.Advantages ?? entity.Advantages;
             entity.Disadvantages = model.Disadvantages ?? entity.Disadvantages;
 
-            return _context.SaveChanges() == 1;
+            if (_context.SaveChanges() == 1)
+                return 0;
+            return 1;
+
         }
 
         public bool DeleteElementType(int id)
