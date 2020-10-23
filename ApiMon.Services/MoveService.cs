@@ -64,18 +64,20 @@ namespace ApiMon.Services
 
         }
 
-        public bool UpdateMove(int id, MoveEdit model)
+        public int UpdateMove(int id, MoveEdit model)
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Moves.Single(e => e.Id == id);
-                if (entity != null)
-                {
-                    entity.Name = model.Name;
-                    entity.Description = model.Description;
-                    return ctx.SaveChanges() == 1;
-                }
-                return false;
+                var entity = ctx.Moves.Find(id);
+                if (entity is null)
+                    return 2;
+                
+                entity.Name = model.Name;
+                entity.Description = model.Description;
+                if (ctx.SaveChanges() == 1)
+                    return 0;
+                
+                return 1;
             }
         }
 

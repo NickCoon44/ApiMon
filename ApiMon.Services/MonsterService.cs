@@ -97,7 +97,7 @@ namespace ApiMon.Services
 
         public int UpdateMonster(int id, MonsterEdit model)
         {
-            var entity = _context.Monsters.Single(e => e.Id == id);
+            var entity = _context.Monsters.Find(id);
 
             if (CheckMove(model.MoveOneId, model.MoveTwoId, model.MoveThreeId, model.MoveFourId))
             {
