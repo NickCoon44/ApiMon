@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ApiMon.Models.MoveModels
+namespace ApiMon.Models.MonsterModels
 {
-    public class MoveListItem
+    public class MonsterListItem
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string ElementType { get; set; } //Name of Element Type
+        public string ElementType { get; set; } // Name of ElementType
     }
 }

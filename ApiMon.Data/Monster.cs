@@ -18,6 +18,7 @@ namespace ApiMon.Data
         public string Description { get; set; }
 
         // Element Type
+        [Required]
         [ForeignKey(nameof(ElementType))]
         public int ElementTypeId { get; set; }
         public virtual ElementType ElementType { get; set; }

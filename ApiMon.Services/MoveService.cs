@@ -31,14 +31,12 @@ namespace ApiMon.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var query =
-                    ctx
+                var query = ctx
                         .Moves
                         .Select(e => new MoveListItem
                         {
                             Id = e.Id,
                             Name = e.Name,
-                            Description = e.Description,
                             ElementType = e.ElementType.Name
                         });
 

@@ -59,6 +59,8 @@
     <Compile Include="ElementTypeModels\ElementTypeListItem.cs" />
     <Compile Include="ElementTypeModels\ElementTypeUpdate.cs" />
     <Compile Include="MonsterModels\MonsterCreate.cs" />
+    <Compile Include="MonsterModels\MonsterDetail.cs" />
+    <Compile Include="MonsterModels\MonsterListItem.cs" />
     <Compile Include="MoveModels\MoveCreate.cs" />
     <Compile Include="MoveModels\MoveDetail.cs" />
     <Compile Include="MoveModels\MoveEdit.cs" />
