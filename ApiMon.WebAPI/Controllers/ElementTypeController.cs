@@ -60,9 +60,13 @@ namespace ApiMon.WebAPI.Controllers
 
             var service = CreateElementTypeService();
 
-            if (service.UpdateElementType(id, model))
-                return Ok("Element Updated");
-            return InternalServerError();
+            switch (service.UpdateElementType(id, model))
+            {
+                case 0: return Ok("Element Updated");
+                case 1: return InternalServerError();
+                case 2: return NotFound();
+                default: return InternalServerError();
+            }
         }
 
         [HttpDelete]

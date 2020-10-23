@@ -68,7 +68,7 @@ namespace ApiMon.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Moves.Single(e => e.Id == id);
+                var entity = ctx.Moves.Find(id);
                 if (entity != null)
                 {
                     entity.Name = model.Name;

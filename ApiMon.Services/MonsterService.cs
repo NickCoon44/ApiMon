@@ -83,7 +83,7 @@ namespace ApiMon.Services
 
         public bool UpdateMonster(int id, MonsterEdit model)
         {
-            var entity = _context.Monsters.Single(e => e.Id == id);
+            var entity = _context.Monsters.Find(id);
 
             if (entity != null)
             {
