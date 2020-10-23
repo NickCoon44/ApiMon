@@ -42,7 +42,9 @@ namespace ApiMon.Services
         //Get by ID
         public ElementTypeDetail GetElementTypeById(int id)
         {
-            var entity = _context.ElementTypes.Single(e => e.Id == id);
+            var entity = _context.ElementTypes.Find(id);
+            if (entity is null)
+                return null;
 
             var model = new ElementTypeDetail()
             {

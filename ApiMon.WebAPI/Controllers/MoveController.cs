@@ -31,6 +31,8 @@ namespace ApiMon.WebAPI.Controllers
             var service = CreateMoveService();
 
             var move = service.GetMoveById(id);
+            if (move is null)
+                return NotFound();
             return Ok(move);
         }
 
