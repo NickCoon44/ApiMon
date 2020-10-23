@@ -79,6 +79,35 @@ namespace ApiMon.Services
             return model;
         }
 
+        public bool UpdateMonster(int id, MonsterEdit model)
+        {
+            var entity = _context.Monsters.Single(e => e.Id == id);
 
+            if (entity != null)
+            {
+                entity.Name = model.Name;
+                entity.Description = model.Description;
+                entity.ElementTypeId = model.ElementTypeId;
+                entity.MoveOneId = model.MoveOneId;
+                entity.MoveTwoId = model.MoveTwoId;
+                entity.MoveThreeId = model.MoveThreeId;
+                entity.MoveFourId = model.MoveFourId;
+
+                return _context.SaveChanges() == 1;
+            }
+            return false;
+
+        }
+
+        public bool DeleteMonster(int id)
+        {
+            var entity = _context.Monsters.Single(e => e.Id == id);
+            if (entity != null)
+            {
+                _context.Monsters.Remove(entity);
+                return _context.SaveChanges() == 1;
+            }
+            return false;
+        }
     }
 }
