@@ -52,27 +52,27 @@ namespace ApiMon.Services
                 ElementType = entity.ElementType.Name,
                 MoveOne = new MoveListItem()
                 {
-                    Id = entity.MoveOneId,
-                    Name = entity.MoveOne.Name,
-                    ElementType = entity.MoveOne.ElementType.Name
+                    Id = entity.MoveOneId != null ? entity.MoveOneId : null,
+                    Name = entity.MoveOne != null ? entity.MoveOne.Name : "none",
+                    ElementType = entity.MoveOne != null ? entity.MoveOne.Name : "none"
                 },
                 MoveTwo = new MoveListItem()
                 {
-                    Id = entity.MoveTwoId,
-                    Name = entity.MoveTwo.Name,
-                    ElementType = entity.MoveTwo.ElementType.Name
+                    Id = entity.MoveTwoId != null ? entity.MoveTwoId : null,
+                    Name = entity.MoveTwo != null ? entity.MoveTwo.Name : "none",
+                    ElementType = entity.MoveTwo != null ? entity.MoveTwo.Name : "none"
                 },
                 MoveThree = new MoveListItem()
                 {
-                    Id = entity.MoveThreeId,
-                    Name = entity.MoveThree.Name,
-                    ElementType = entity.MoveThree.ElementType.Name
+                    Id = entity.MoveThreeId != null ? entity.MoveThreeId : null,
+                    Name = entity.MoveThree != null ? entity.MoveThree.Name : "none",
+                    ElementType = entity.MoveThree != null ? entity.MoveThree.Name : "none"
                 },
                 MoveFour = new MoveListItem()
                 {
-                    Id = entity.MoveFourId,
-                    Name = entity.MoveFour.Name,
-                    ElementType = entity.MoveFour.ElementType.Name
+                    Id = entity.MoveFourId != null ? entity.MoveFourId : null,
+                    Name = entity.MoveFour != null ? entity.MoveFour.Name : "none",
+                    ElementType = entity.MoveFour != null ? entity.MoveFour.Name : "none"
                 },
             };
 
