@@ -1,4 +1,5 @@
-﻿using ApiMon.Models.MonsterModels;
+﻿using ApiMon.Models.AdvantageModels;
+using ApiMon.Models.MonsterModels;
 using ApiMon.Models.MoveModels;
 using System;
 using System.Collections.Generic;
@@ -17,9 +18,9 @@ namespace ApiMon.Models.ElementTypeModels
         [Display(Name = "Element Id")]
         public string Name { get; set; }
 
-        public string Advantages { get; set; }
+        public List<AdvantageListItem> Advantages { get; set; } = new List<AdvantageListItem>();
 
-        public string Disadvantages { get; set; }
+        public List<AdvantageListItem> Disadvantages { get; set; } = new List<AdvantageListItem>();
 
         public List<MonsterListItem> Monsters { get; set; } = new List<MonsterListItem>();
         public List<MoveListItem> Moves { get; set; } = new List<MoveListItem>();

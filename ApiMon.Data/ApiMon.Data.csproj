@@ -86,22 +86,23 @@
   <ItemGroup>
     <Compile Include="ElementType.cs" />
     <Compile Include="IdentityModels.cs" />
-    <Compile Include="Migrations\202010231941507_nullableMoves.cs" />
-    <Compile Include="Migrations\202010231941507_nullableMoves.Designer.cs">
-      <DependentUpon>202010231941507_nullableMoves.cs</DependentUpon>
+    <Compile Include="Migrations\202010272020112_IBrokeItAgain.cs" />
+    <Compile Include="Migrations\202010272020112_IBrokeItAgain.Designer.cs">
+      <DependentUpon>202010272020112_IBrokeItAgain.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Monster.cs" />
     <Compile Include="Move.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TypeAdvantage.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202010231941507_nullableMoves.resx">
-      <DependentUpon>202010231941507_nullableMoves.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202010272020112_IBrokeItAgain.resx">
+      <DependentUpon>202010272020112_IBrokeItAgain.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

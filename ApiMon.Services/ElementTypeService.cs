@@ -25,13 +25,13 @@ namespace ApiMon.Services
         }
 
         //Create
-        public bool CreateElementType (ElementTypeCreate model)
+        public bool CreateElementType(ElementTypeCreate model)
         {
             var entity = new ElementType()
             {
                 Name = model.Name,
-                Advantages = model.Advantages,
-                Disadvantages = model.Disadvantages
+                //Advantages = model.Advantages,
+                //Disadvantages = model.Disadvantages
             };
 
             _context.ElementTypes.Add(entity);
@@ -50,11 +50,30 @@ namespace ApiMon.Services
             {
                 Id = entity.Id,
                 Name = entity.Name,
-                Advantages = entity.Advantages,
-                Disadvantages = entity.Disadvantages
+                //Advantages = entity.Advantages,
+                //Disadvantages = entity.Disadvantages
             };
 
-            foreach(var monster in entity.Monsters)
+            foreach (var adv in entity.Advantages)
+            {
+                model.Advantages.Add(new Models.AdvantageModels.AdvantageListItem
+                {
+                    //looking at the disadvantaged side of the matchup
+                    ElementTypeId = adv.Disadvantage.Id,
+                    Name = adv.Disadvantage.Name
+                });
+            }
+
+            foreach (var dis in entity.Disadvantages)
+            {
+                model.Disadvantages.Add(new Models.AdvantageModels.AdvantageListItem
+                {
+                    ElementTypeId = dis.Advantage.Id,
+                    Name = dis.Advantage.Name
+                });
+            }
+
+            foreach (var monster in entity.Monsters)
             {
                 model.Monsters.Add(new Models.MonsterModels.MonsterListItem
                 {
@@ -64,7 +83,7 @@ namespace ApiMon.Services
                 });
             }
 
-            foreach(var move in entity.Moves)
+            foreach (var move in entity.Moves)
             {
                 model.Moves.Add(new Models.MoveModels.MoveListItem
                 {
@@ -86,8 +105,8 @@ namespace ApiMon.Services
 
             //Using null coalescing operators to check for user inputs
             entity.Name = model.Name ?? entity.Name;
-            entity.Advantages = model.Advantages ?? entity.Advantages;
-            entity.Disadvantages = model.Disadvantages ?? entity.Disadvantages;
+            //entity.Advantages = model.Advantages ?? entity.Advantages;
+            //entity.Disadvantages = model.Disadvantages ?? entity.Disadvantages;
 
             if (_context.SaveChanges() == 1)
                 return 0;

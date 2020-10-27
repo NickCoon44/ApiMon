@@ -7,13 +7,13 @@ namespace ApiMon.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.0-30225")]
-    public sealed partial class nullableMoves : IMigrationMetadata
+    public sealed partial class IBrokeItAgain : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(nullableMoves));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(IBrokeItAgain));
         
         string IMigrationMetadata.Id
         {
-            get { return "202010231941507_nullableMoves"; }
+            get { return "202010272020112_IBrokeItAgain"; }
         }
         
         string IMigrationMetadata.Source

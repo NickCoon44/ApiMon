@@ -58,6 +58,7 @@
     <Compile Include="MoveService.cs" />
     <Compile Include="MonsterService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TypeAdvantageService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ApiMon.Models.ElementTypeModels
+namespace ApiMon.Models.AdvantageModels
 {
-    public class ElementTypeUpdate
+    public class AdvantageListItem
     {
+        public int ElementTypeId { get; set; }
         public string Name { get; set; }
     }
 }

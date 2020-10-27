@@ -13,9 +13,9 @@ namespace ApiMon.Data
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }
-        public string Advantages { get; set; }
-        public string Disadvantages { get; set; }
-        public virtual ICollection<Monster> Monsters { get; set; }
-        public virtual ICollection<Move> Moves { get; set; }
+        public virtual ICollection<TypeAdvantage> Advantages { get; set; } = new List<TypeAdvantage>();
+        public virtual ICollection<TypeAdvantage> Disadvantages { get; set; } = new List<TypeAdvantage>();
+        public virtual ICollection<Monster> Monsters { get; set; } = new List<Monster>();
+        public virtual ICollection<Move> Moves { get; set; } = new List<Move>();
     }
 }
