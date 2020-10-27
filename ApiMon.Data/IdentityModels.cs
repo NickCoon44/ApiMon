@@ -38,6 +38,9 @@ namespace ApiMon.Data
         public DbSet<Move> Moves { get; set; }
         public DbSet<ElementType> ElementTypes { get; set; }
 
+        public DbSet<TypeAdvantage> TypeAdvantages { get; set; }
+
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             //modelBuilder
@@ -52,6 +55,22 @@ namespace ApiMon.Data
                 .Configurations
                 .Add(new IdentityUserLoginConfiguration())
                 .Add(new IdentityUserRoleConfiguration());
+
+            //https://stackoverflow.com/questions/5559043/entity-framework-code-first-two-foreign-keys-from-same-table
+            // a = typeAdvantage ----- e = elementType
+            modelBuilder
+                .Entity<TypeAdvantage>()
+                .HasRequired(a => a.Advantage)
+                .WithMany(e => e.Advantages)
+                .HasForeignKey(a => a.AdvantageId)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder
+                .Entity<TypeAdvantage>()
+                .HasRequired(a => a.Disadvantage)
+                .WithMany(e => e.Disadvantages)
+                .HasForeignKey(a => a.DisadvantageId)
+                .WillCascadeOnDelete(false);
         }
     }
 

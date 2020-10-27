@@ -54,6 +54,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdvantageModels\AdvantageCreate.cs" />
+    <Compile Include="AdvantageModels\AdvantageListItem.cs" />
+    <Compile Include="AdvantageModels\AdvantageUpdate.cs" />
     <Compile Include="ElementTypeModels\ElementTypeCreate.cs" />
     <Compile Include="ElementTypeModels\ElementTypeDetail.cs" />
     <Compile Include="ElementTypeModels\ElementTypeListItem.cs" />

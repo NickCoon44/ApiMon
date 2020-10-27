@@ -12,10 +12,10 @@ namespace ApiMon.Models.ElementTypeModels
         [Required]
         public string Name { get; set; }
 
-        [Required]
-        public string Advantages { get; set; }
+        //[Required]
+        //public string Advantages { get; set; }
 
-        [Required]
-        public string Disadvantages { get; set; }
+        //[Required]
+        //public string Disadvantages { get; set; }
     }
 }
